@@ -1,9 +1,10 @@
-const webpack = require('webpack');
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
     'whatwg-fetch',
-    path.resolve(__dirname, '/test/index.js')
+    path.resolve(__dirname, 'test/index.js')
   ],
   output: {
     path: __dirname + '/test/build',
@@ -12,7 +13,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js[x]?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.js[x]?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'stage-0']
+        }
+      },
     ]
   },
   resolve: {

@@ -14,20 +14,28 @@ const timeout = (milliseconds) => {
 }
 
 const fetchWithTimeout = (url, options, milliseconds) => {
+  if(!milliseconds){
+    milliseconds = 5000;
+  }
   return Promise.race([
       timeout(milliseconds),
       fetch(url, options)
   ]);
 }
 
-const retry = (url, options, milliseconds, retryTimes) => { 
+const refetch = (url, options, milliseconds, retryTimes, cb) => {
   return fetchWithTimeout(url, options, milliseconds).catch(e => {
+    if(!retryTimes){
+      return Promise.reject(e);
+    }
     if(retryTimes === 1){
       return Promise.reject('timeout');
     } else {
       if(e === 'timeout'){
-        console.log(`there is ${retryTimes - 1} times retry left`);
-        return retry(url, options, milliseconds, retryTimes - 1);
+        if(cb){
+          cb(retryTimes - 1);
+        }
+        return retry(url, options, milliseconds, retryTimes - 1, cb || null);
       } else {
         return Promise.reject(e)
       }
@@ -35,4 +43,4 @@ const retry = (url, options, milliseconds, retryTimes) => {
   });
 }
 
-module.exports = retry
+module.exports = refetch
