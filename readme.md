@@ -8,15 +8,14 @@ refetch let you simply add `timeout` and `retry` method to your fetch API
 
 ### Install
 
-`shell
-npm install re-fetch --save
-`
+```shell
+ npm install re-fetch --save
+```
 
 ### Usage
 The url and options are totally same as fetch.
 
-`javascript
-
+```javascript
   import refetch from 're-fetch';
 
   //timeout is milliseconds like: 3000
@@ -29,4 +28,4 @@ The url and options are totally same as fetch.
         /* ... */
       }
     });
-`
+```
