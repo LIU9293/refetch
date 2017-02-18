@@ -1,6 +1,6 @@
 {
   "name": "re-fetch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "add retry and timeout options to fetch",
   "main": "index.js",
   "scripts": {

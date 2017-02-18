@@ -35,7 +35,7 @@ const refetch = (url, options, milliseconds, retryTimes, cb) => {
         if(cb){
           cb(retryTimes - 1);
         }
-        return retry(url, options, milliseconds, retryTimes - 1, cb || null);
+        return refetch(url, options, milliseconds, retryTimes - 1, cb || null);
       } else {
         return Promise.reject(e)
       }

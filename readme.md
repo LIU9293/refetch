@@ -13,7 +13,7 @@ refetch let you simply add `timeout` and `retry` method to your fetch API
 ```
 
 ### Usage
-The url and options are totally same as fetch.
+The `url` and `options` are totally same as fetch.
 
 ```javascript
   import refetch from 're-fetch';
